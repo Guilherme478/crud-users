@@ -12,12 +12,24 @@ export class UsersListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUsers
+    this.getUsers();
   }
 
   getUsers():void{
     this.userService.getUsers() .subscribe(response => {
-      this.users = response
+      this.users = response;
+    },(err) => {
+      console.log('Erro ao executar', err);
+    })
+  }
+
+  deletUser(id: number): void{
+    this.userService.deletUser(id).subscribe(reponse => {
+      console.log('Usuário Exluído')
+    },(err) => {
+      console.log(err);
+    }, () => {
+      this.getUsers();
     })
   }
 
