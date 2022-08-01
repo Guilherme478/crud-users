@@ -17,30 +17,30 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  //retorna lista de usuarios
-  getUsers (): Observable<User[]> {
-    return this.httpClient.get<User[]>(this.apiUrl)
+  // C.R.U.D - CREATE, READ, UPDATE, DELETE
 
+  // Retorna a lista de usuarios READ
+  getUsers():Observable<User[]> {
+    return this.httpClient.get<User[]>(this.apiUrl);
   }
 
-  // salva usuario no banco 
-
-  postUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.apiUrl, user, this.httpOptions)
+  // Salva usuario no banco CREATE
+  postUser(user: User):Observable<User> {
+    return this.httpClient.post<User>(this.apiUrl, user, this.httpOptions);
   }
 
-  //Exclui o usuario do banco
-
-  deletUser(id: number): Observable<User> {
+  // Exclui o usuario do banco DELETE
+  deleteUser(id: number):Observable<User> {
     return this.httpClient.delete<User>(`${this.apiUrl}/id/${id}`)
   }
 
-  //Edita usuarios
-   updateUser(id: string, user: User): Observable<User>{  
-    return this.httpClient.put<User>(`${this.apiUrl}/id/${id}`, user, this.httpOptions)
-   }
+  // Edita usuario UPDATE
+  updateUser(id: string, user: User):Observable<User> {
+    return this.httpClient.put<User>(`${this.apiUrl}/id/${id}`, user, this.httpOptions);
+  }
 
-   getUser(id: string): Observable<User[]> {
+  // Lista usuario unico
+  getUser(id: string):Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.apiUrl}/id/${id}`)
-   }
+  }
 }
